@@ -23,16 +23,24 @@ function addTask() {
   }
 
   const div = document.createElement("div");
+
   div.classList.add("flex", "justify-between", "items-center");
 
   const li = document.createElement("li");
   li.classList.add("flex", "gap-4", "py-4");
+
   div.appendChild(li);
+
+  console.log("LI : ",li);
+  console.log("DIV : ",div);
 
   const input = document.createElement("input");
   input.setAttribute("type", "checkbox");
   li.appendChild(input);
 
+  console.log("LI : ",li);
+
+  //CHECKBOX EVENT LISTENER
   input.addEventListener("change", function () {
     const parent = this.parentElement.parentElement;
     const clone = parent.cloneNode(true);
@@ -42,6 +50,7 @@ function addTask() {
     console.log("added");
   });
 
+  
   li.insertAdjacentHTML("beforeend", `<p>${taskText}</p>`);
 
   const divIcon = document.createElement("div");
@@ -57,7 +66,6 @@ function addTask() {
     "fa-regular",
     "fa-trash-can"
   );
-  divIcon.appendChild(trash);
 
   trash.addEventListener("click", function () {
     this.parentElement.parentElement.remove();
@@ -81,8 +89,9 @@ function addTask() {
 
     iconDiv.parentElement.remove();
   });
-
+  divIcon.appendChild(trash);
   divIcon.appendChild(edit);
-  taskList.appendChild(div);
+  // taskList.appendChild(div);
+  taskList.insertBefore(div,taskList.firstChild)
   taskInput.value = "";
 }
